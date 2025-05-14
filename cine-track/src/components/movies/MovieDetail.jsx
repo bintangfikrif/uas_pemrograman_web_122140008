@@ -82,9 +82,9 @@ const MovieDetail = ({ movieId }) => {
               onChange={handleStatusChange}
               className="status-select"
             >
-              <option value={WATCH_STATUS.WATCHING}>Sedang</option>
-              <option value={WATCH_STATUS.COMPLETED}>Selesai</option>
-              <option value={WATCH_STATUS.PLANNED}>Rencana</option>
+              <option value={WATCH_STATUS.WATCHING}>Watching</option>
+              <option value={WATCH_STATUS.COMPLETED}>Completed</option>
+              <option value={WATCH_STATUS.PLANNED}>Planned</option>
             </select>
           </div>
           
