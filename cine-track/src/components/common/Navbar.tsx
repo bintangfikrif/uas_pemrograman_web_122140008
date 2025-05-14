@@ -1,7 +1,12 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { logout } from '../../features/auth/authSlice';
 
 const Navbar = () => {
+  const user = useSelector((state: { auth: { user: { username: string } | null } }) => state.auth.user);
+  const dispatch = useDispatch();
+
   return (
     <nav className="navbar">
       <div className="container">
@@ -31,6 +36,18 @@ const Navbar = () => {
               Add New
             </NavLink>
           </li>
+          {!user ? (
+            <>
+              <li className="nav-item"><NavLink to="/login">Login</NavLink></li>
+            </>
+          ) : (
+            <>
+              <li className="nav-item">Hello, {user.username}</li>
+              <li className="nav-item">
+                <button onClick={() => dispatch(logout())}>Logout</button>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>
