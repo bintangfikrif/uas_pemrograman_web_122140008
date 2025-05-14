@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Cine-Track
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+CINE-TRACK adalah sebuah aplikasi web yang dirancang untuk membantu pengguna mencatat dan mengelola koleksi film atau series pribadi mereka. Aplikasi ini memungkinkan pengguna untuk mengatur status tontonan seperti "Watching", "Completed", atau "Planned", serta memberikan rating dan menambahkan komentar untuk setiap judul yang ditonton.
 
-## Available Scripts
+## Fitur
+Berikut adalah fitur-fitur utama dari aplikasi CINE-TRACK:
+1. Tambah Film/Series ke koleksi pribadi.
+2. Ubah Status Tontonan: "Planned", "Watching", atau "Completed".
+3. Tambah Ulasan dan Rating untuk setiap film atau series.
+4. Lihat Daftar Koleksi lengkap dengan detail film.
+5. Filter Koleksi berdasarkan status tontonan.
+6. Edit Ulasan atau Rating yang telah dibuat.
+7. Hapus Film dari koleksi.
+8. Hapus Ulasan yang sudah ditambahkan.
+   
+## Entitas dalam Aplikasi CINE-TRACK
 
-In the project directory, you can run:
+Aplikasi ini menggunakan tiga entitas utama dalam perancangannya, yaitu **User**, **Media**, dan **Watchlist**. Berikut penjelasan masing-masing entitas:
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 1. 🧑 User
+Mewakili pengguna aplikasi.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+| Atribut      | Tipe Data   | Keterangan                  |
+|--------------|-------------|-----------------------------|
+| id_user      | Integer     | Primary Key                 |
+| username     | Varchar     | Nama pengguna               |
+| password     | Varchar     | Kata sandi untuk login      |
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 2. 🎬 Media
+Menyimpan informasi mengenai film atau serial.
 
-### `npm run build`
+| Atribut      | Tipe Data   | Keterangan                  |
+|--------------|-------------|-----------------------------|
+| id_media     | Integer     | Primary Key                 |
+| title        | Varchar     | Judul film/serial           |
+| genre        | Varchar     | Genre (aksi, drama, dll)    |
+| year         | Integer     | Tahun rilis                 |
+| synopsis     | Text        | Ringkasan cerita            |
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 3. 📂 Watchlist
+Merupakan entitas relasi antara **User** dan **Media**, yang juga menyimpan aktivitas pengguna terhadap media tersebut.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+| Atribut      | Tipe Data   | Keterangan                                      |
+|--------------|-------------|-------------------------------------------------|
+| id_user      | Integer     | Foreign Key ke entitas `User`                  |
+| id_media     | Integer     | Foreign Key ke entitas `Media`                 |
+| status       | Varchar     | Status tontonan: "Rencana", "Sedang", "Selesai"|
+| rating       | Integer     | Penilaian pengguna (skala 1–5)                 |
+| review       | Text        | Komentar/ulasan pengguna                       |
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+---
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
