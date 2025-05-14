@@ -76,9 +76,9 @@ const MovieCard = ({ movie }) => {
             onChange={handleStatusChange}
             className="status-select"
           >
-            <option value={WATCH_STATUS.WATCHING}>Sedang</option>
-            <option value={WATCH_STATUS.COMPLETED}>Selesai</option>
-            <option value={WATCH_STATUS.PLANNED}>Rencana</option>
+            <option value={WATCH_STATUS.WATCHING}>Watching</option>
+            <option value={WATCH_STATUS.COMPLETED}>Completed</option>
+            <option value={WATCH_STATUS.PLANNED}>Planned</option>
           </select>
           
           <Link to={`/movies/edit/${movie.id}`} className="edit-btn">
