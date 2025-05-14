@@ -1,0 +1,39 @@
+/* ===== CSS VARIABLES FOR CINE-TRACK ===== */
+:root {
+  /* Brand Colors */
+  --color-primary: #ffd700;
+  --color-primary-dark: #ffa500;
+  --color-bg: #18181c;
+  --color-bg-alt: #23232b;
+  --color-text: #f5f5f5;
+  --color-text-muted: #aaa;
+  --color-border: #444;
+
+  /* Status Colors */
+  --color-watching: #3b82f6;
+  --color-completed: #22c55e;
+  --color-planned: #f59e42;
+  --color-error: #ff4d4f;
+
+  /* Card & Shadow */
+  --card-radius: 8px;
+  --card-shadow: 0 2px 8px rgba(0,0,0,0.13);
+
+  /* Button */
+  --btn-radius: 4px;
+  --btn-padding: 0.5em 1.2em;
+  --btn-font-weight: 600;
+
+  /* Font */
+  --font-main: 'Segoe UI', Arial, Helvetica, sans-serif;
+  --font-size-base: 1em;
+  --font-size-lg: 1.2em;
+  --font-size-xl: 2em;
+
+  /* Transition */
+  --transition-fast: 0.2s;
+
+  /* Scrollbar */
+  --scrollbar-bg: #23232b;
+  --scrollbar-thumb: #ffd700;
+}
