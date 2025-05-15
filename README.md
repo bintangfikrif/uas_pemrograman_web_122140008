@@ -5,6 +5,19 @@
 
 # Dependensi Paket yang Dibutuhkan untuk Menjalankan Aplikasi
 
+Aplikasi ini dibangun menggunakan React dan beberapa library pendukung. Berikut adalah daftar dependensi utama yang digunakan:
+
+- **react**: Library utama untuk membangun antarmuka pengguna.
+- **react-dom**: Untuk rendering React di DOM.
+- **react-router-dom**: Routing halaman (navigasi antar halaman).
+- **redux** & **@reduxjs/toolkit**: Manajemen state aplikasi.
+- **react-redux**: Integrasi React dengan Redux.
+- **axios**: Untuk request HTTP (opsional, pada proyek ini mock API menggunakan localStorage).
+- **tailwindcss**: Utility-first CSS framework (opsional, jika digunakan).
+- **autoprefixer** & **postcss**: Untuk proses CSS modern.
+- **lucide-react**: Ikon SVG untuk React.
+- **@testing-library/react**, **@testing-library/jest-dom**, **@testing-library/user-event**: Untuk testing aplikasi.
+
 # Fitur pada Aplikasi
 
 # Referensi
