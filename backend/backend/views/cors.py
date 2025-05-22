@@ -5,7 +5,7 @@ from pyramid.httpexceptions import HTTPForbidden
 def cors_tween_factory(handler, registry):
     def cors_tween(request):
         # Allow specific origin (not *)
-        allowed_origin = 'http://localhost:5173'
+        allowed_origin = 'http://localhost:3000'
 
         if request.method == 'OPTIONS':
             # Preflight response

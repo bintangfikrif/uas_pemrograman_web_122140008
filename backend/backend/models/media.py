@@ -1,9 +1,7 @@
 from sqlalchemy import Column, Integer, String, Text, Enum, Float
-from sqlalchemy.ext.declarative import declarative_base
+from .base import BaseModel
 
-Base = declarative_base()
-
-class Media(Base):
+class Media(BaseModel):
     __tablename__ = 'media'
 
     id = Column(Integer, primary_key=True, autoincrement=True)

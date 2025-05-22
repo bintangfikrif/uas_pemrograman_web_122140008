@@ -10,8 +10,6 @@ class User(BaseModel):
     password = Column(String(255), nullable=False) 
     role = Column(String(20), nullable=True, default='user')
     
-    comments = relationship("Comment", back_populates="user", cascade="all, delete-orphan")
-
     def set_password(self, password):
         self.password = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode()
     

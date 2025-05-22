@@ -6,6 +6,8 @@ import zope.sqlalchemy
 # Import or define all models here to ensure they are attached to the
 # ``Base.metadata`` prior to any initialization routines.
 from .mymodel import MyModel  # flake8: noqa
+from backend.models.base import BaseModel  # flake8: noqa
+from .base import Base  # flake8: noqa
 from .user import User  # flake8: noqa
 from .media import Media  # flake8: noqa
 
