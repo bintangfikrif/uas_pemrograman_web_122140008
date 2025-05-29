@@ -4,7 +4,7 @@ def includeme(config):
 
     # Media API routes (match views/media.py)
     config.add_route('api_v1.media_collection', '/api/media')
-    config.add_route('api_v1.media_entry', '/api/media/{id:\d+}')
+    config.add_route('api_v1.media_entry', '/api/media/{id}')
 
     # User authentication routes (if implemented)
     config.add_route('api_v1.users', '/api/v1/users')

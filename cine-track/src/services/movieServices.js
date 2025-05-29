@@ -1,82 +1,60 @@
-import api from './api';
+import api from './api'; // Your configured axios client
 
-const STORAGE_KEY = 'cine-track-movies';
+// The base URL for media is now 'http://localhost:6543/api' (from api.js)
+// The specific path is '/media'
+const MEDIA_ENDPOINT = '/media';
 
-// Mock movie service that uses localStorage
-// In a real application, these would call an actual API
 const movieService = {
   async getAll() {
     try {
-      const movies = await api.getFromStorage(STORAGE_KEY);
-      return movies;
+      const response = await api.client.get(MEDIA_ENDPOINT, { withCredentials: true });
+      return response.data;
     } catch (error) {
-      console.error('Error fetching movies:', error);
-      throw error;
+      console.error('Error fetching movies:', error.response?.data || error.message);
+      throw error.response?.data || new Error('Failed to fetch movies');
     }
   },
 
   async getById(id) {
     try {
-      const movies = await api.getFromStorage(STORAGE_KEY);
-      return movies.find(movie => movie.id === id);
+      const response = await api.client.get(`<span class="math-inline">\{MEDIA\_ENDPOINT\}/</span>{id}`, { withCredentials: true });
+      return response.data;
     } catch (error) {
-      console.error(`Error fetching movie with id ${id}:`, error);
-      throw error;
+      console.error(`Error fetching movie with id ${id}:`, error.response?.data || error.message);
+      throw error.response?.data || new Error(`Failed to fetch movie ${id}`);
     }
   },
 
-  async create(movie) {
+  async create(movieData) {
     try {
-      const movies = await api.getFromStorage(STORAGE_KEY);
-      // Create a new movie with a unique ID
-      const newMovie = {
-        ...movie,
-        id: Date.now().toString(),
-        createdAt: new Date().toISOString(),
-      };
-      
-      movies.push(newMovie);
-      await api.saveToStorage(STORAGE_KEY, movies);
-      return newMovie;
+      // The backend MediaCreateSchema expects specific fields.
+      // Ensure movieData matches this schema.
+      const response = await api.client.post(MEDIA_ENDPOINT, movieData, { withCredentials: true });
+      return response.data;
     } catch (error) {
-      console.error('Error creating movie:', error);
-      throw error;
+      console.error('Error creating movie:', error.response?.data || error.message);
+      throw error.response?.data || new Error('Failed to create movie');
     }
   },
 
-  async update(id, updatedMovie) {
+  async update(id, updatedMovieData) {
     try {
-      const movies = await api.getFromStorage(STORAGE_KEY);
-      const index = movies.findIndex(movie => movie.id === id);
-      
-      if (index !== -1) {
-        movies[index] = {
-          ...movies[index],
-          ...updatedMovie,
-          updatedAt: new Date().toISOString(),
-        };
-        
-        await api.saveToStorage(STORAGE_KEY, movies);
-        return movies[index];
-      }
-      
-      throw new Error(`Movie with id ${id} not found`);
+      // The backend MediaUpdateSchema expects specific fields.
+      const response = await api.client.put(`<span class="math-inline">\{MEDIA\_ENDPOINT\}/</span>{id}`, updatedMovieData, { withCredentials: true });
+      return response.data;
     } catch (error) {
-      console.error(`Error updating movie with id ${id}:`, error);
-      throw error;
+      console.error(`Error updating movie with id ${id}:`, error.response?.data || error.message);
+      throw error.response?.data || new Error(`Failed to update movie ${id}`);
     }
   },
 
   async remove(id) {
     try {
-      const movies = await api.getFromStorage(STORAGE_KEY);
-      const filteredMovies = movies.filter(movie => movie.id !== id);
-      
-      await api.saveToStorage(STORAGE_KEY, filteredMovies);
-      return id;
+      await api.client.delete(`<span class="math-inline">\{MEDIA\_ENDPOINT\}/</span>{id}`, { withCredentials: true });
+      return id; // On success, typically no content is returned, just status 204
     } catch (error) {
-      console.error(`Error deleting movie with id ${id}:`, error);
-      throw error;
+      console.error(`Error deleting movie with id ${id}:`, error.response?.data || error.message);
+      throw error.response?.data || new Error(`Failed to delete movie ${id}`);
     }
   }
 };

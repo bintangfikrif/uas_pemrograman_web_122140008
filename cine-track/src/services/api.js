@@ -3,7 +3,7 @@ import axios from 'axios';
 // For simplicity, we'll use localStorage as our mock backend.
 // In a real application, this would point to an actual API.
 
-const BASE_URL = 'http://localhost:3001/api'; // Base URL for a real API
+const BASE_URL = 'http://localhost:6543/api'; 
 
 const api = {
   // Wrapper around axios with common configuration

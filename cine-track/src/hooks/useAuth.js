@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Cookies from "js-cookie";
 
 const API_URL = "http://localhost:6543/api/v1";
@@ -30,30 +30,31 @@ export function useAuth() {
       const data = await res.json();
 
       if (!res.ok) {
-        setError(data.message || "Login failed");
+        const message = data.message || "Login failed";
+        setError(message);
         setLoading(false);
-        return false;
+        return { success: false, message };
       }
 
       Cookies.set("user", JSON.stringify(data.user), { expires: 1 });
       setUser(data.user);
       setLoading(false);
 
-      // ✅ Redirect based on role
-      const role = data.user.role;
-      if (role === "admin") {
-        window.location.href = "/dashboard";
-      } else {
-        window.location.href = "/";
-      }
-
-      return true;
+      return {
+        success: true,
+        user: data.user,
+        role: data.user.role,
+      };
     } catch (err) {
       setError("An unexpected error occurred.");
       setLoading(false);
-      return false;
+      return {
+        success: false,
+        message: "An unexpected error occurred.",
+      };
     }
   };
+
 
   // 📝 Register Function
   const register = async (username, email, password) => {

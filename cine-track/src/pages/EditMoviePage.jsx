@@ -1,54 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../app/hooks';
-import { 
-  selectMovieById, 
-  updateMovie, 
-  fetchMovies, 
-  selectMoviesStatus 
-} from '../features/movies/moviesSlice';
+import { useMovie } from '../hooks/useMovies';  // Your custom hook
+
 import MovieForm from '../components/movies/MovieForm';
 import LoadingSpinner from '../components/common/LoadingSpinner';
 import ErrorMessage from '../components/common/ErrorMessage';
 
 const EditMoviePage = () => {
   const { id } = useParams();
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   
+  const { 
+    movieDetail, 
+    loading, 
+    error, 
+    fetchMovieById, 
+    updateMovie 
+  } = useMovie();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const movie = useAppSelector(state => selectMovieById(state, id));
-  const status = useAppSelector(selectMoviesStatus);
-  const error = useAppSelector(state => state.movies.error);
-  
+
+  // Fetch movie detail only if not loaded or id mismatched
   useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchMovies());
+    if (!movieDetail || movieDetail.id !== id) {
+      fetchMovieById(id);
     }
-  }, [status, dispatch]);
-  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [id]);
+
   const handleSubmit = async (movieData) => {
     try {
       setIsSubmitting(true);
-      await dispatch(updateMovie({ id, ...movieData })).unwrap();
-      navigate(`/movies/${id}`);
-    } catch (error) {
-      console.error('Failed to update movie:', error);
+      const result = await updateMovie(id, movieData);
+      if (result.success) {
+        navigate(`/movies/${id}`);
+      } else {
+        alert('Failed to update movie. Please try again.');
+      }
+    } catch (err) {
+      console.error('Failed to update movie:', err);
       alert('Failed to update movie. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
-  
-  if (status === 'loading') {
+
+  if (loading) {
     return <LoadingSpinner />;
   }
-  
-  if (status === 'failed') {
-    return <ErrorMessage message={error || 'Failed to load movie data'} />;
+
+  if (error) {
+    return <ErrorMessage message={error} />;
   }
-  
-  if (!movie && status === 'succeeded') {
+
+  if (!movieDetail) {
     return (
       <div className="not-found">
         <h2>Movie Not Found</h2>
@@ -59,16 +64,16 @@ const EditMoviePage = () => {
       </div>
     );
   }
-  
+
   return (
     <div className="edit-movie-page">
       <div className="page-header">
         <h1>Edit Movie</h1>
-        <p>Update information for {movie?.title}</p>
+        <p>Update information for {movieDetail.title}</p>
       </div>
-      
-      <MovieForm 
-        movie={movie}
+
+      <MovieForm
+        movie={movieDetail}
         onSubmit={handleSubmit}
         isSubmitting={isSubmitting}
       />

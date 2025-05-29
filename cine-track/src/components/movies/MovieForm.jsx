@@ -12,7 +12,7 @@ const MovieForm = ({ movie = null, onSubmit, isSubmitting }) => {
     year: new Date().getFullYear(),
     director: '',
     genre: '',
-    type: 'movie', // Default to 'movie'
+    type: 'Movie', // Default to 'movie'
     status: WATCH_STATUS.PLANNED, // Default to 'Planned'
     rating: 0,
     synopsis: '',
@@ -128,10 +128,10 @@ const MovieForm = ({ movie = null, onSubmit, isSubmitting }) => {
             value={formData.type}
             onChange={handleChange}
           >
-            <option value="movie">Movie</option>
-            <option value="series">Series</option>
-            <option value="documentary">Documentary</option>
-            <option value="anime">Anime</option>
+            <option value="Movie">Movie</option>
+            <option value="Series">Series</option>
+            <option value="Documentary">Documentary</option>
+            <option value="Anime">Anime</option>
           </select>
         </div>
       </div>

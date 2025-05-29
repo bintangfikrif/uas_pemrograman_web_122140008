@@ -72,8 +72,8 @@ class MediaCreateSchema(Schema):
         validate=validate.OneOf(["Planned", "Watching", "Completed"]),
         error_messages={"required": "Status media wajib diisi."}
     )
-    rating = fields.Float(
-        validate=validate.Range(min=1.0, max=5.0)
+    rating = fields.Integer(
+        validate=validate.Range(min=1, max=5)
     )
     synopsis = fields.String()
     notes = fields.String()

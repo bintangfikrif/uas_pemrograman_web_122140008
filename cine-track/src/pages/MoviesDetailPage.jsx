@@ -14,13 +14,23 @@ const MovieDetailPage = () => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  
+
+  // Convert id to number to match the movie.id type in state
+  const numericId = Number(id);
+
+  // Debug logs
+  console.log('id from URL:', id, typeof id);
+  console.log('numericId:', numericId);
+
   const status = useAppSelector(selectMoviesStatus);
-  const movie = useAppSelector(state => selectMovieById(state, id));
+  const movie = useAppSelector(state => selectMovieById(state, numericId));
+  
+  console.log('movie from selector:', movie);
+
   const error = useAppSelector(state => state.movies.error);
   
   useEffect(() => {
-    // Only fetch if we haven't already
+    // Only fetch movies if status is 'idle' (not loaded yet)
     if (status === 'idle') {
       dispatch(fetchMovies());
     }
@@ -48,7 +58,7 @@ const MovieDetailPage = () => {
   
   return (
     <div className="movie-detail-page">
-      <MovieDetail movieId={id} />
+      <MovieDetail movieId={numericId} />
     </div>
   );
 };

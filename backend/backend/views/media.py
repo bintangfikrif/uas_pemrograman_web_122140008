@@ -49,7 +49,6 @@ def get_media_entry(request):
 
 @view_config(route_name='api_v1.media_entry', request_method='PUT', renderer='json')
 def update_media_entry(request):
-    """Update a media entry."""
     media_id = int(request.matchdict['id'])
     media_entry = MediaService.get_media_by_id(request.dbsession, media_id)
 
@@ -57,12 +56,15 @@ def update_media_entry(request):
         raise HTTPNotFound()
 
     try:
-        update_data = MediaUpdateSchema().load(request.json_body, partial=True)
+        data = dict(request.json_body)
+        data.pop('id', None)  # Remove 'id' if it exists in the input
+        update_data = MediaUpdateSchema().load(data, partial=True)
     except ValidationError as err:
         raise HTTPBadRequest(json={'errors': err.messages})
 
     updated_media_entry = MediaService.update_media(request.dbsession, media_entry, update_data)
     return MediaSchema().dump(updated_media_entry)
+
 
 @view_config(route_name='api_v1.media_entry', request_method='DELETE')
 def delete_media_entry(request):

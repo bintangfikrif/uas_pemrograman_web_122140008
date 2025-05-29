@@ -5,13 +5,6 @@ export const WATCH_STATUS = {
   PLANNED: 'Planned',   // Planned to watch
 };
 
-// Movie types
-export const MOVIE_TYPES = [
-  'movie',
-  'series',
-  'documentary',
-  'anime'
-];
 
 // Status filter options for UI
 export const STATUS_FILTERS = [
