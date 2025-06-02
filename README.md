@@ -4,6 +4,7 @@ Aplikasi web pribadi untuk manajemen koleksi film, serial, dan anime Anda. Catat
 
 ## Daftar Isi
 
+* [Author] (#author)
 * [Tentang Proyek](#tentang-proyek)
 * [Fitur Utama](#fitur-utama)
 * [Teknologi yang Digunakan](#teknologi-yang-digunakan)
@@ -12,6 +13,12 @@ Aplikasi web pribadi untuk manajemen koleksi film, serial, dan anime Anda. Catat
     * [Backend (Pyramid)](#backend-pyramid)
     * [Frontend (React)](#frontend-react)
 * [Penggunaan](#penggunaan)
+
+
+## Author
+**Bintang Fikri Fauzan**
+122140008
+Pemrograman WEB RA - ITERA 2025
 
 ## Tentang Proyek
 
