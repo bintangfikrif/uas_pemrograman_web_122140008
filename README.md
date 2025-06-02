@@ -16,9 +16,7 @@ Aplikasi web pribadi untuk manajemen koleksi film, serial, dan anime Anda. Catat
 
 
 ## Author
-**Bintang Fikri Fauzan**
-122140008
-Pemrograman WEB RA - ITERA 2025
+**Bintang Fikri Fauzan** <br> 122140008 <br> Pemrograman WEB RA - ITERA 2025
 
 ## Tentang Proyek
 
@@ -193,3 +191,8 @@ Setelah aplikasi berjalan:
 2.  **Tambahkan Film/Serial:** Gunakan fitur "Tambah Media" untuk menambahkan entri baru ke koleksi Anda.
 3.  **Kelola Koleksi:** Lihat daftar media Anda, ubah status, tambahkan rating, dan tulis ulasan.
 4.  **Jelajahi Detail:** Klik pada media untuk melihat detail lengkap dan riwayat tontonan.
+
+## Referensi
+
+CineTrack terinspirasi dari situs manajemen koleksi media populer seperti [IMDb](https://www.imdb.com/). Tujuan utama proyek ini adalah untuk menyediakan platform pribadi yang lebih sederhana bagi pengguna untuk melacak dan mengelola koleksi film, serial TV, dan anime mereka sendiri, dengan fitur-fitur penting seperti pencatatan tontonan, rating, dan ulasan.
+
