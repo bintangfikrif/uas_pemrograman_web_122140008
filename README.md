@@ -12,8 +12,6 @@ Aplikasi web pribadi untuk manajemen koleksi film, serial, dan anime Anda. Catat
     * [Backend (Pyramid)](#backend-pyramid)
     * [Frontend (React)](#frontend-react)
 * [Penggunaan](#penggunaan)
-* [Kontribusi](#kontribusi)
-* [Lisensi](#lisensi)
 
 ## Tentang Proyek
 
