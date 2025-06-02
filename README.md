@@ -87,25 +87,6 @@ uas_pemrograman_web_122140008/
 ├── package-lock.json
 └── tailwind.config.js # Konfigurasi TailwindCSS
 ```
-### Entitas Basis Data
-
-* **User:**
-    * `id_user` (Primary Key)
-    * `username`
-    * `password` (hash)
-* **Media:**
-    * `id_media` (Primary Key)
-    * `title`
-    * `genre`
-    * `year`
-    * `synopsis`
-* **Watchlist:** (Tabel penghubung antara User dan Media)
-    * `id_watchlist` (Primary Key)
-    * `id_user` (Foreign Key ke User)
-    * `id_media` (Foreign Key ke Media)
-    * `status` (Planned, Watching, Completed)
-    * `rating` (1-5)
-    * `review`
 
 ### Entitas Basis Data
 
